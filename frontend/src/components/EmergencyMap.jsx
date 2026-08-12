@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import {
   MapContainer,
   TileLayer,
@@ -21,10 +20,8 @@ delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-
   iconUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-
   shadowUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
@@ -66,7 +63,7 @@ function EmergencyMap({ location }) {
     import.meta.env.VITE_GEOAPIFY_KEY;
 
   useEffect(() => {
-    if (!location) return;
+    if (!location || !GEOAPIFY_KEY) return;
 
     const findPlaces = async () => {
       try {
@@ -160,7 +157,7 @@ function EmergencyMap({ location }) {
           const coords =
             place.geometry?.coordinates;
 
-          if (!coords) return;
+          if (!coords || coords.length < 2) return;
 
           const placePos = [
             coords[1],
@@ -172,42 +169,58 @@ function EmergencyMap({ location }) {
             place.properties?.address_line1 ||
             "Emergency Service";
 
+          // =========================================
+          // HOSPITAL
+          // =========================================
+
           if (
             categories.some((c) =>
-              c.startsWith("healthcare.hospital")
+              c.toLowerCase().includes("hospital")
             ) &&
             !nearestHospital
           ) {
             nearestHospital = {
               position: placePos,
-              name,
+              name: name,
             };
           }
 
+          // =========================================
+          // POLICE
+          // =========================================
+
           if (
             categories.some((c) =>
-              c.startsWith("service.police")
+              c.toLowerCase().includes("police")
             ) &&
             !nearestPolice
           ) {
             nearestPolice = {
               position: placePos,
-              name,
+              name: name,
             };
           }
 
+          // =========================================
+          // FIRE STATION
+          // =========================================
+
           if (
             categories.some((c) =>
-              c.startsWith("service.fire_station")
+              c.toLowerCase().includes("fire")
             ) &&
             !nearestFire
           ) {
             nearestFire = {
               position: placePos,
-              name,
+              name: name,
             };
           }
         });
+
+        console.log("Nearest Hospital:", nearestHospital);
+        console.log("Nearest Police:", nearestPolice);
+        console.log("Nearest Fire:", nearestFire);
 
         // =========================================
         // 4. SET HOSPITAL
@@ -223,7 +236,9 @@ function EmergencyMap({ location }) {
           );
         } else {
           setHospitalPos(null);
-          setHospitalName("Hospital not found nearby");
+          setHospitalName(
+            "Hospital not found nearby"
+          );
         }
 
         // =========================================
