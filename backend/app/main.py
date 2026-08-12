@@ -11,12 +11,8 @@ app = FastAPI(title="SentinelAI")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "https://sentinel-74afl4zfc-deveshpal2004-clouds-projects.vercel.app",
-        "https://sentinel-ai-khaki-eight.vercel.app",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
