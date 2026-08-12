@@ -13,6 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "https://sentinel-74afl4zfc-deveshpal2004-clouds-projects.vercel.app",
         "https://sentinel-ai-khaki-eight.vercel.app",
     ],
     allow_credentials=True,
