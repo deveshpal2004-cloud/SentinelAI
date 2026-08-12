@@ -13,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://YOUR-VERCEL-DOMAIN.vercel.app",
+        "https://sentinel-ai-khaki-eight.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
