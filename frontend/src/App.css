@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.header {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  font-size: 42px;
+  color: #38bdf8;
+}
+
+.logo h1 {
+  font-size: 34px;
+}
+
+.logo p {
+  color: #cbd5e1;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.textbox {
+  width: 100%;
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+}
+
+.textbox:focus {
+  border-color: #38bdf8;
+}
+
+.btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg,#2563eb,#38bdf8);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56,189,248,.35);
+}
+
+.loading {
+  margin: 30px;
+  text-align: center;
+}
+
+.spinner {
+  font-size: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+.results {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #38bdf8;
+}
+
+.card h2 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+.card p {
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.card ul,
+.card ol {
+  padding-left: 20px;
+}
+
+.card li {
+  margin-bottom: 8px;
+}
+
+h4 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #fbbf24;
+}
+
+@media(max-width:700px){
+
+.logo h1{
+font-size:28px;
+}
+
+.container{
+padding:15px;
+}
+
+}
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-card h3 {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.dashboard-card h2 {
+  margin-top: 12px;
+  color: #1976d2;
+  font-size: 28px;
+}
